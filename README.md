@@ -4,21 +4,23 @@ The working diary of a non-traditional coder — sessions, notes, and experiment
 
 > Learning to build with AI, *in public.*
 
-## Current direction → [`/v2`](./v2)
+## Design direction
 
-`v2/` is the live design. Direction: **thin clean linework, real grid, monochrome restraint** — referencing Rauno's Devouring Details, Pentagram, Brad Woods' garden, and IBM Design. Depth comes from hairlines, grids, and layering — never glow.
+Thin clean linework, a real grid, monochrome restraint — referencing Rauno's Devouring Details, Pentagram, Brad Woods' garden, and IBM Design. Depth comes from hairlines, grids, and layering, never glow.
+
+## Structure
 
 ```
-v2/
+.
 ├── index.html        Home — hero · 3-unit overview · before/after SEO · about · AI modal
 ├── notes.html        The garden — digital field notes
-└── assets/
-    ├── css/app.css   Design tokens + components (oklch, light-first)
-    ├── js/app.js     Theme toggle · scroll reveal · modal · deep-links
-    └── img/          Brand marks + monochrome illustrations
+├── assets/
+│   ├── css/app.css   Design tokens + components (oklch, light-first)
+│   ├── js/app.js     Theme toggle · scroll reveal · modal · deep-links
+│   └── img/          Brand marks + monochrome illustrations
+├── docs/             The original design brief (design-card.md, tokens.json)
+└── archive/v1/       An earlier, retired direction — kept for reference only
 ```
-
-The four files at the repo root (`index.html`, `sessions.html`, `about.html`, `contact.html`) are **v1** — an earlier, retired direction, kept for reference.
 
 ## Run it locally
 
@@ -26,8 +28,8 @@ No build step. Serve the folder and open it:
 
 ```bash
 python3 -m http.server 4321
-# v2 home  → http://localhost:4321/v2/index.html
-# v2 notes → http://localhost:4321/v2/notes.html
+# Home  → http://localhost:4321/
+# Notes → http://localhost:4321/notes.html
 # add #ask to any URL to open the AI modal
 ```
 
