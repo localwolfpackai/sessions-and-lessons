@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+
+# Local QA screenshots
+.shots/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Dependencies (if a build is added later)
+node_modules/
