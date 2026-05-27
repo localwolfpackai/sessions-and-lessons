@@ -32,10 +32,15 @@
 
   --on-accent: oklch(0.99 0.005 250);
 
-  /* Type */
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans:  "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --mono:  "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Type — Söhne is the main face (Inter is the live fallback; Söhne isn't on
+     Google Fonts, self-host to activate). Geist Mono + Pixelify used minimally. */
+  --font-main:  "Söhne", "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:  "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-pixel: "Pixelify Sans", "Geist Mono", monospace;   /* background / asides / decoration only */
+  /* legacy aliases → mapped onto the new system so existing rules keep working */
+  --serif: var(--font-main);
+  --sans:  var(--font-main);
+  --mono:  var(--font-mono);
 
   /* Grid + rhythm */
   --page: 1240px;
@@ -216,7 +221,7 @@ p { text-wrap: pretty; }
   padding: 1.1rem var(--pad); border-left: var(--rail) solid var(--line);
 }
 .metastrip__cell:first-child { border-left: none; }
-.metastrip__cell .label { display: block; margin-bottom: 0.35rem; }
+.metastrip__cell .label { display: block; margin-bottom: 0.35rem; font-family: var(--font-pixel); letter-spacing: 0.04em; }
 .metastrip__cell .val { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
 @media (max-width: 760px) {
   .metastrip { grid-template-columns: repeat(2, 1fr); }
