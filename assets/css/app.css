@@ -74,7 +74,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 
 body {
   background: var(--paper);
@@ -86,6 +86,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
+  overflow-x: hidden;
   min-height: 100svh;
 }
 
@@ -203,8 +204,25 @@ p { text-wrap: pretty; }
   color: var(--ink);
   max-width: 18ch;
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 .hero__title em { font-style: italic; color: var(--accent); }
+
+/* Home hero only — scanline display: heavy letterforms sliced by horizontal hairlines.
+   Opt-in via .hero__title--scan so JS-applied inline styles can't disable it.
+   Falls back to solid ink where background-clip:text isn't supported. */
+.hero__title--scan {
+  font-weight: 700;
+  background-image: repeating-linear-gradient(to bottom, var(--ink) 0 0.12em, transparent 0.12em 0.16em);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Keep the accent color on the emphasized run, but slice it the same way. */
+.hero__title--scan em {
+  background-image: repeating-linear-gradient(to bottom, var(--accent) 0 0.12em, transparent 0.12em 0.16em);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .hero__lede {
   margin-top: 1.6rem; max-width: 52ch;
   font-size: clamp(1.02rem, 1.5vw, 1.18rem);
@@ -221,12 +239,7 @@ p { text-wrap: pretty; }
   padding: 1.1rem var(--pad); border-left: var(--rail) solid var(--line);
 }
 .metastrip__cell:first-child { border-left: none; }
-/* Pixel label, line/outline style — hollow letters to match the hairline system */
-.metastrip__cell .label {
-  display: block; margin-bottom: 0.35rem;
-  font-family: var(--font-pixel); letter-spacing: 0.06em;
-  color: transparent; -webkit-text-stroke: 0.6px var(--ink-3);
-}
+.metastrip__cell .label { display: block; margin-bottom: 0.35rem; }
 .metastrip__cell .val { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
 @media (max-width: 760px) {
   .metastrip { grid-template-columns: repeat(2, 1fr); }
@@ -330,7 +343,12 @@ p { text-wrap: pretty; }
   border: var(--rail) solid var(--line); border-radius: 4px;
   padding: 0.05rem 0.3rem; background: var(--paper);
 }
-@media (max-width: 620px) { .askbtn kbd, .nav a[href="#about"] { display: none; } }
+@media (max-width: 640px) {
+  .askbtn { display: none; }
+  .site-header__row { gap: 0.75rem; }
+  .nav { gap: 0.1rem; }
+  .nav a { padding: 0.4rem 0.5rem; font-size: 0.82rem; }
+}
 
 /* ---------- Compare: before / after Lighthouse ---------- */
 .compare {
