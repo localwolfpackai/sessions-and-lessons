@@ -221,7 +221,12 @@ p { text-wrap: pretty; }
   padding: 1.1rem var(--pad); border-left: var(--rail) solid var(--line);
 }
 .metastrip__cell:first-child { border-left: none; }
-.metastrip__cell .label { display: block; margin-bottom: 0.35rem; font-family: var(--font-pixel); letter-spacing: 0.04em; }
+/* Pixel label, line/outline style — hollow letters to match the hairline system */
+.metastrip__cell .label {
+  display: block; margin-bottom: 0.35rem;
+  font-family: var(--font-pixel); letter-spacing: 0.06em;
+  color: transparent; -webkit-text-stroke: 0.6px var(--ink-3);
+}
 .metastrip__cell .val { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); }
 @media (max-width: 760px) {
   .metastrip { grid-template-columns: repeat(2, 1fr); }
