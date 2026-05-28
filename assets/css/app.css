@@ -32,10 +32,15 @@
 
   --on-accent: oklch(0.99 0.005 250);
 
-  /* Type */
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans:  "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --mono:  "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* Type — Noto Sans Display is the main face (loaded from Google Fonts).
+     Geist Mono + Pixelify used minimally. */
+  --font-main:  "Noto Sans Display", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:  "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-pixel: "Pixelify Sans", "Geist Mono", monospace;   /* background / asides / decoration only */
+  /* legacy aliases → mapped onto the new system so existing rules keep working */
+  --serif: var(--font-main);
+  --sans:  var(--font-main);
+  --mono:  var(--font-mono);
 
   /* Grid + rhythm */
   --page: 1240px;
@@ -69,7 +74,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; overflow-x: hidden; }
 
 body {
   background: var(--paper);
@@ -81,6 +86,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-wrap: break-word;
+  overflow-x: hidden;
   min-height: 100svh;
 }
 
@@ -198,8 +204,25 @@ p { text-wrap: pretty; }
   color: var(--ink);
   max-width: 18ch;
   text-wrap: balance;
+  overflow-wrap: break-word;
 }
 .hero__title em { font-style: italic; color: var(--accent); }
+
+/* Home hero only — scanline display: heavy letterforms sliced by horizontal hairlines.
+   Opt-in via .hero__title--scan so JS-applied inline styles can't disable it.
+   Falls back to solid ink where background-clip:text isn't supported. */
+.hero__title--scan {
+  font-weight: 700;
+  background-image: repeating-linear-gradient(to bottom, var(--ink) 0 0.12em, transparent 0.12em 0.16em);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* Keep the accent color on the emphasized run, but slice it the same way. */
+.hero__title--scan em {
+  background-image: repeating-linear-gradient(to bottom, var(--accent) 0 0.12em, transparent 0.12em 0.16em);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .hero__lede {
   margin-top: 1.6rem; max-width: 52ch;
   font-size: clamp(1.02rem, 1.5vw, 1.18rem);
@@ -320,7 +343,12 @@ p { text-wrap: pretty; }
   border: var(--rail) solid var(--line); border-radius: 4px;
   padding: 0.05rem 0.3rem; background: var(--paper);
 }
-@media (max-width: 620px) { .askbtn kbd, .nav a[href="#about"] { display: none; } }
+@media (max-width: 640px) {
+  .askbtn { display: none; }
+  .site-header__row { gap: 0.75rem; }
+  .nav { gap: 0.1rem; }
+  .nav a { padding: 0.4rem 0.5rem; font-size: 0.82rem; }
+}
 
 /* ---------- Compare: before / after Lighthouse ---------- */
 .compare {

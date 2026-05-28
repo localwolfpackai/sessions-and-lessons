@@ -12,7 +12,9 @@ Thin clean linework, a real grid, monochrome restraint — referencing Rauno's D
 
 ```
 .
-├── index.html        Home — hero · 3-unit overview · before/after SEO · about · AI modal
+├── index.html        Home — hero · 3-unit overview · before/after SEO · about preview · AI modal
+├── about.html        The story + four operating beliefs
+├── projects.html     The work — selected builds, honest outcomes
 ├── notes.html        The garden — digital field notes
 ├── assets/
 │   ├── css/app.css   Design tokens + components (oklch, light-first)
@@ -36,7 +38,7 @@ python3 -m http.server 4321
 ## Stack
 
 - Static HTML / CSS / vanilla JS — zero dependencies
-- **Type:** Newsreader (display) · Geist (UI) · Geist Mono (labels), via Google Fonts
+- **Type:** Noto Sans Display (main) · Geist Mono (labels) · Pixelify Sans (line-style, decorative), via Google Fonts
 - **Color:** `oklch()` throughout, light-mode default with a persisted dark toggle
 - Accessible by default: reduced-motion support, focus rings, semantic landmarks, alt text
 
