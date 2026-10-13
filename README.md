@@ -20,8 +20,7 @@ Thin clean linework, a real grid, monochrome restraint — referencing Rauno's D
 │   ├── css/app.css   Design tokens + components (oklch, light-first)
 │   ├── js/app.js     Theme toggle · scroll reveal · modal · deep-links
 │   └── img/          Brand marks + monochrome illustrations
-├── docs/             The original design brief (design-card.md, tokens.json)
-└── archive/v1/       An earlier, retired direction — kept for reference only
+└── docs/             The original design brief (design-card.md, tokens.json)
 ```
 
 ## Run it locally
@@ -38,7 +37,7 @@ python3 -m http.server 4321
 ## Stack
 
 - Static HTML / CSS / vanilla JS — zero dependencies
-- **Type:** Noto Sans Display (main) · Geist Mono (labels) · Pixelify Sans (line-style, decorative), via Google Fonts
+- **Type:** Noto Sans Display (main) · Fraunces (editorial headings) · Geist Mono (labels) · Pixelify Sans (line-style, decorative), via Google Fonts
 - **Color:** `oklch()` throughout, light-mode default with a persisted dark toggle
 - Accessible by default: reduced-motion support, focus rings, semantic landmarks, alt text
 
